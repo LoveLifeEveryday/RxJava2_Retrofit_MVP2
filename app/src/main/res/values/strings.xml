@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">wanandroidByXcyNice</string>
+    <string name="loading">加载中</string>
+    <string name="is_login">isLogin</string>
+    <string name="account_number">账号</string>
+    <string name="password">密码</string>
+</resources>
