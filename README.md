@@ -1,0 +1,2 @@
+# RxJava2_Retrofit_MVP2
+一个基于玩安卓API开发的MVP_RxJava2_Retrofit的Demo
