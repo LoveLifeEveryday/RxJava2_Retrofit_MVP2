@@ -1,6 +1,7 @@
 package com.users.xucanyou666.rxjava2_retrofit_mvp2.base;
 
 import com.google.gson.JsonParseException;
+import com.yechaoa.yutils.LogUtil;
 
 import org.json.JSONException;
 
@@ -96,6 +97,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onComplete() {
+
         if (view != null && isShowDialog) {
             view.hideLoading();
         }

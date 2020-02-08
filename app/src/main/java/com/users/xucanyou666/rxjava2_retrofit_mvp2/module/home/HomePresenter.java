@@ -24,7 +24,7 @@ public class HomePresenter extends BasePresenter<IHomeView> {
      * 第一次加载文章列表
      */
     public void getArticleList() {
-        addDisposable(apiServer.getArticleList(0), new BaseObserver<BaseBean<Article>>(baseView) {
+        addDisposable(apiServer.getArticleList(0), new BaseObserver<BaseBean<Article>>(baseView,true) {
             @Override
             public void onSuccess(BaseBean<Article> bean) {
                 baseView.setArticleData(bean);

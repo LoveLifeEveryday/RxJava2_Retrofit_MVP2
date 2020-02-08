@@ -18,8 +18,7 @@ class LoginPresenter extends BasePresenter<ILoginView> {
         super(baseView);
     }
 
-    void submit(String username, String password) {
-
+    void login(String username, String password) {
         addDisposable(apiServer.login(username, password), new BaseObserver<BaseBean<User>>(baseView, true) {
             @Override
             public void onSuccess(BaseBean<User> bean) {

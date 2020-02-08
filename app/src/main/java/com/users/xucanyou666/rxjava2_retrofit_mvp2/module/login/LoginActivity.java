@@ -43,6 +43,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     @BindView(R.id.btn_register)
     Button mBtnRegister;
 
+    private String mUsername;
+    private String mPassword;
+
     @Override
     protected LoginPresenter createPresenter() {
         return new LoginPresenter(this);
@@ -55,16 +58,16 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
     }
 
     @Override
+    protected void initData() {
+    }
+
+    @Override
     protected void initView() {
         LoginTextWatcher textWatcher = new LoginTextWatcher(mTilUsername, mTilPassword);
         mEtUsername.addTextChangedListener(textWatcher);
         mEtPassword.addTextChangedListener(textWatcher);
     }
 
-    @Override
-    protected void initData() {
-
-    }
 
     @Override
     public void showLoginSuccess(String successMessage) {
@@ -84,9 +87,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
         SpUtil.setString(GlobalConstant.PASSWORD, user.data.password);
         startActivity(MainActivity.class, true);
     }
-
-    private String mUsername;
-    private String mPassword;
 
     /**
      * 判断账号和密码输入是否正确
@@ -117,14 +117,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
             case R.id.btn_login:
                 YUtils.closeSoftKeyboard();
                 if (isValid()) {
-                    presenter.submit(mUsername, mPassword);
+                    presenter.login(mUsername, mPassword);
                 } else {
                     ToastUtil.showToast("填写错误 (°∀°)ﾉ");
                 }
                 break;
             case R.id.btn_register:
                 YUtils.closeSoftKeyboard();
-                startActivity(RegisterActivity.class,false);
+                startActivity(RegisterActivity.class, false);
                 break;
             default:
                 break;

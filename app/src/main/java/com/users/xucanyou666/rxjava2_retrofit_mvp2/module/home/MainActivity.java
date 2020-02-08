@@ -51,7 +51,6 @@ public class MainActivity extends BaseActivity<HomePresenter> implements IHomeVi
     @Override
     protected void initView() {
         mHomeRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        presenter.getArticleList();
     }
 
     @Override
