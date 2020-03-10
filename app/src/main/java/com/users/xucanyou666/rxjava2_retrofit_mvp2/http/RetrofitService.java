@@ -21,7 +21,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 public class RetrofitService {
 
-    private static RetrofitService apiRetrofit;
+    private volatile static RetrofitService apiRetrofit;
     private API.WAZApi apiServer;
 
     //单例调用
