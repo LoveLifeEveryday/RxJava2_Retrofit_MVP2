@@ -25,7 +25,7 @@ class RegisterPresenter extends BasePresenter<IRegisterView> {
     void register(String username, String password, String repassword, int usernameCountMax, int passwordCountMax, int rePasswordCountMax) {
         YUtils.closeSoftKeyboard();
         //判断输入是否合规
-        if (isUsernameValid(username, usernameCountMax) && isPasswordValid(password, passwordCountMax) && isRepasswordValid(repassword, rePasswordCountMax)) {
+        if (isUsernameValid(username, usernameCountMax) && isPasswordValid(password, passwordCountMax) && isRePasswordValid(repassword, rePasswordCountMax)) {
             //判断两次密码输入是否一致
             if (password.equals(repassword)) {
                 addDisposable(apiServer.register(username, password, repassword), new BaseObserver<BaseBean<User>>(baseView, true) {
@@ -46,8 +46,6 @@ class RegisterPresenter extends BasePresenter<IRegisterView> {
         } else {
             baseView.showRegisterFailed("填写错误 (°∀°)ﾉ");
         }
-
-
     }
 
     /**
@@ -79,7 +77,7 @@ class RegisterPresenter extends BasePresenter<IRegisterView> {
      * @param rePasswordCountMax 确认密码的规定输入字符最大值
      * @return 是否合规
      */
-    private boolean isRepasswordValid(String rePassword, int rePasswordCountMax) {
+    private boolean isRePasswordValid(String rePassword, int rePasswordCountMax) {
         return !TextUtils.isEmpty(rePassword) && rePassword.length() <= rePasswordCountMax && rePassword.length() >= rePasswordCountMax / 2;
     }
 }
