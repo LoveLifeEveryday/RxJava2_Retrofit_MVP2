@@ -1,6 +1,5 @@
 package com.users.xucanyou666.rxjava2_retrofit_mvp2.module.register;
 
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +10,6 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseActivity;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseBean;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.bean.User;
 import com.yechaoa.yutils.ToastUtil;
-import com.yechaoa.yutils.YUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -40,7 +38,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     TextInputLayout mTilRepassword;
     @BindView(R.id.btn_register)
     Button mBtnRegister;
-    private String mUsername, mPassword, mRepassword;
 
     @Override
     protected RegisterPresenter createPresenter() {
@@ -63,7 +60,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
 
     @Override
     protected void initData() {
-
     }
 
     @Override
@@ -74,7 +70,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     @Override
     public void showRegisterFailed(String errorMessage) {
         ToastUtil.showToast(errorMessage);
-
     }
 
     @Override
@@ -82,33 +77,15 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
         finish();
     }
 
-    private boolean isUsernameValid() {
-        mUsername = mEtUsername.getText().toString().trim();
-        return !TextUtils.isEmpty(mUsername) && mUsername.length() <= mTilUsername.getCounterMaxLength() && mUsername.length() >= mTilUsername.getCounterMaxLength() / 2;
-    }
-
-    private boolean isPasswordValid() {
-        mPassword = mEtPassword.getText().toString().trim();
-        return !TextUtils.isEmpty(mPassword) && mPassword.length() <= mTilPassword.getCounterMaxLength() && mPassword.length() >= mTilPassword.getCounterMaxLength() / 2;
-    }
-
-    private boolean isRepasswordValid() {
-        mRepassword = mEtRepassword.getText().toString().trim();
-        return !TextUtils.isEmpty(mRepassword) && mRepassword.length() <= mTilRepassword.getCounterMaxLength() && mRepassword.length() >= mTilRepassword.getCounterMaxLength() / 2;
-    }
 
     @OnClick(R.id.btn_register)
     public void onViewClicked() {
-        YUtils.closeSoftKeyboard();
-        if (isUsernameValid() && isPasswordValid() && isRepasswordValid()) {
-            if (mPassword.equals(mRepassword)) {
-                presenter.submit(mUsername, mPassword, mRepassword);
-            } else {
-                ToastUtil.showToast("两次密码不一样( ⊙ o ⊙ ) ");
-            }
-        } else {
-            ToastUtil.showToast("填写错误 (°∀°)ﾉ");
-        }
-
+        String username = mEtUsername.getText().toString().trim();
+        String password = mEtPassword.getText().toString().trim();
+        String rePassword = mEtRepassword.getText().toString().trim();
+        int tilUsernameCounterMaxLength = mTilUsername.getCounterMaxLength();
+        int tilPasswordCounterMaxLength = mTilPassword.getCounterMaxLength();
+        int tilRePasswordCounterMaxLength = mTilRepassword.getCounterMaxLength();
+        presenter.register(username, password, rePassword, tilUsernameCounterMaxLength, tilPasswordCounterMaxLength, tilRePasswordCounterMaxLength);
     }
 }

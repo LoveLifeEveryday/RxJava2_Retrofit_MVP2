@@ -26,7 +26,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
     protected BaseView view;
     private boolean isShowDialog;
 
-    public BaseObserver(BaseView view) {
+    protected BaseObserver(BaseView view) {
         this.view = view;
     }
 
@@ -36,7 +36,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
      * @param view         view
      * @param isShowDialog 是否显示进度条
      */
-    public BaseObserver(BaseView view, boolean isShowDialog) {
+    protected BaseObserver(BaseView view, boolean isShowDialog) {
         this.view = view;
         this.isShowDialog = isShowDialog;
     }
@@ -97,7 +97,6 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
 
     @Override
     public void onComplete() {
-
         if (view != null && isShowDialog) {
             view.hideLoading();
         }

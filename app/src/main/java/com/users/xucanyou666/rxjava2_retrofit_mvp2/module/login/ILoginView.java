@@ -26,6 +26,6 @@ public interface ILoginView extends BaseView {
      */
     void showLoginFailed(String errorMessage);
 
-    void doSuccess(BaseBean<User> user);
+    void doSuccess();
 
 }
