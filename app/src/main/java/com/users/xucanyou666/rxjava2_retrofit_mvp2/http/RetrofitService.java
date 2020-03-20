@@ -24,7 +24,11 @@ public class RetrofitService {
     private volatile static RetrofitService apiRetrofit;
     private API.WAZApi apiServer;
 
-    //单例调用
+    /**
+     * 单例调用
+     *
+     * @return RetrofitService
+     */
     public static RetrofitService getInstance() {
         if (apiRetrofit == null) {
             synchronized (Object.class) {
@@ -36,15 +40,23 @@ public class RetrofitService {
         return apiRetrofit;
     }
 
-    //获取api对象
+
+    /**
+     * 获取api对象
+     *
+     * @return api对象
+     */
     public API.WAZApi getApiService() {
         return apiServer;
     }
 
-    //初始化retrofit
+
+    /**
+     * 初始化retrofit
+     */
     private RetrofitService() {
 
-        //配置okhttp并设置时间、日志信息和cookies
+        //配置okHttp并设置时间、日志信息和cookies
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -55,7 +67,7 @@ public class RetrofitService {
                 .cookieJar(new CookiesManager(YUtils.getApplication()))
                 .build();
 
-        //关联okhttp并加上rxjava和gson的配置和baseurl
+        //关联okHttp并加上rxJava和Gson的配置和baseUrl
         Retrofit retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
                 .addConverterFactory(BaseConverterFactory.create())

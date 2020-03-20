@@ -32,26 +32,26 @@ public class PersistentCookieStore {
 
     public PersistentCookieStore(Context context) {
 
-            cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
-            cookies = new ArrayMap<>();
+        cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
+        cookies = new ArrayMap<>();
 
-            //将持久化的cookies缓存到内存中 即map cookies
-            Map<String, ?> prefsMap = cookiePrefs.getAll();
-            for (Map.Entry<String, ?> entry : prefsMap.entrySet()) {
-                String[] cookieNames = TextUtils.split((String) entry.getValue(), ",");
-                for (String name : cookieNames) {
-                    String encodedCookie = cookiePrefs.getString(name, null);
-                    if (encodedCookie != null) {
-                        Cookie decodedCookie = decodeCookie(encodedCookie);
-                        if (decodedCookie != null) {
-                            if (!cookies.containsKey(entry.getKey())) {
-                                cookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
-                            }
-                            cookies.get(entry.getKey()).put(name, decodedCookie);
+        //将持久化的cookies缓存到内存中 即map cookies
+        Map<String, ?> prefsMap = cookiePrefs.getAll();
+        for (Map.Entry<String, ?> entry : prefsMap.entrySet()) {
+            String[] cookieNames = TextUtils.split((String) entry.getValue(), ",");
+            for (String name : cookieNames) {
+                String encodedCookie = cookiePrefs.getString(name, null);
+                if (encodedCookie != null) {
+                    Cookie decodedCookie = decodeCookie(encodedCookie);
+                    if (decodedCookie != null) {
+                        if (!cookies.containsKey(entry.getKey())) {
+                            cookies.put(entry.getKey(), new ConcurrentHashMap<String, Cookie>());
                         }
+                        cookies.get(entry.getKey()).put(name, decodedCookie);
                     }
                 }
             }
+        }
 
     }
 
@@ -88,8 +88,9 @@ public class PersistentCookieStore {
 
     public List<Cookie> get(HttpUrl url) {
         ArrayList<Cookie> ret = new ArrayList<>();
-        if (cookies.containsKey(url.host()))
+        if (cookies.containsKey(url.host())) {
             ret.addAll(cookies.get(url.host()).values());
+        }
         return ret;
     }
 
@@ -122,9 +123,9 @@ public class PersistentCookieStore {
 
     public List<Cookie> getCookies() {
         ArrayList<Cookie> ret = new ArrayList<>();
-        for (String key : cookies.keySet())
+        for (String key : cookies.keySet()) {
             ret.addAll(cookies.get(key).values());
-
+        }
         return ret;
     }
 
@@ -135,8 +136,9 @@ public class PersistentCookieStore {
      * @return 序列化之后的string
      */
     protected String encodeCookie(SerializableOkHttpCookies cookie) {
-        if (cookie == null)
+        if (cookie == null) {
             return null;
+        }
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(os);

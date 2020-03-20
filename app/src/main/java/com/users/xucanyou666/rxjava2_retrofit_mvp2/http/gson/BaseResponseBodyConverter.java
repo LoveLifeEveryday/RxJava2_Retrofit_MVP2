@@ -17,11 +17,14 @@ import retrofit2.Converter;
  * Describe : 重写ResponseBodyConverter对json预处理
  */
 public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> {
-    private final Gson gson;
     private final TypeAdapter<T> adapter;
 
-    BaseResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
-        this.gson = gson;
+    /**
+     * 登陆失效
+     */
+    private static final int LOG_OUT_TIME = -1001;
+
+    BaseResponseBodyConverter( TypeAdapter<T> adapter) {
         this.adapter = adapter;
     }
 
@@ -34,7 +37,7 @@ public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> 
             if (0 != code) {
                 String data;
                 //错误信息
-                if (code == -1001) {//失效
+                if (code == LOG_OUT_TIME) {
                     data = "登录失效，请重新登录";
                 } else {
                     data = object.getString("errorMsg");

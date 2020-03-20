@@ -35,6 +35,7 @@ class LoginPresenter extends BasePresenter<ILoginView> {
      */
     void login(String username, String password, int usernameCountMax, int passwordCountMax) {
         YUtils.closeSoftKeyboard();
+        //判断输入的账号密码是否符合规范
         if (isValid(username, password, usernameCountMax, passwordCountMax)) {
             addDisposable(apiServer.login(username, password), new BaseObserver<BaseBean<User>>(baseView, true) {
                 @Override

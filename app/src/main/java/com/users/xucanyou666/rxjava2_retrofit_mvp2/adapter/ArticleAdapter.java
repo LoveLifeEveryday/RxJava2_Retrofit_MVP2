@@ -1,7 +1,10 @@
 package com.users.xucanyou666.rxjava2_retrofit_mvp2.adapter;
 
+import android.os.Build;
 import android.text.Html;
 import android.widget.ImageView;
+
+import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -10,6 +13,8 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.R;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.bean.Article;
 
 import java.util.List;
+
+import static androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY;
 
 /**
  * Description : ArticleAdapter
@@ -31,10 +36,11 @@ public class ArticleAdapter extends BaseQuickAdapter<Article.DataDetailBean, Bas
         mTypeIsCollect = typeIsCollect;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void convert(BaseViewHolder helper, Article.DataDetailBean item) {
         //fromHtml，因为搜索结果中的title中含有html标签
-        helper.setText(R.id.article_title, Html.fromHtml(item.title));
+        helper.setText(R.id.article_title, Html.fromHtml(item.title,FROM_HTML_MODE_LEGACY));
         helper.setText(R.id.article_chapter, item.chapterName);
         helper.setText(R.id.article_author, item.author);
         //设置收藏的点击事件

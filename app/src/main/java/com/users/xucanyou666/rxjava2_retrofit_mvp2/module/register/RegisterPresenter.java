@@ -22,13 +22,13 @@ class RegisterPresenter extends BasePresenter<IRegisterView> {
         super(baseView);
     }
 
-    void register(String username, String password, String repassword, int usernameCountMax, int passwordCountMax, int rePasswordCountMax) {
+    void register(String username, String password, String rePassword, int usernameCountMax, int passwordCountMax, int rePasswordCountMax) {
         YUtils.closeSoftKeyboard();
         //判断输入是否合规
-        if (isUsernameValid(username, usernameCountMax) && isPasswordValid(password, passwordCountMax) && isRePasswordValid(repassword, rePasswordCountMax)) {
+        if (checkIsValid(username, password, rePassword, usernameCountMax, passwordCountMax, rePasswordCountMax)) {
             //判断两次密码输入是否一致
-            if (password.equals(repassword)) {
-                addDisposable(apiServer.register(username, password, repassword), new BaseObserver<BaseBean<User>>(baseView, true) {
+            if (password.equals(rePassword)) {
+                addDisposable(apiServer.register(username, password, rePassword), new BaseObserver<BaseBean<User>>(baseView, true) {
                     @Override
                     public void onSuccess(BaseBean<User> bean) {
                         baseView.showRegisterSuccess("注册成功（￣▽￣）");
@@ -46,6 +46,21 @@ class RegisterPresenter extends BasePresenter<IRegisterView> {
         } else {
             baseView.showRegisterFailed("填写错误 (°∀°)ﾉ");
         }
+    }
+
+    /**
+     * 整体判断输入的内容是否合规
+     *
+     * @param username           账号
+     * @param password           密码
+     * @param rePassword         再次输入的密码
+     * @param usernameCountMax   账号最大输入字数
+     * @param passwordCountMax   密码最大输入字数
+     * @param rePasswordCountMax 再次输入密码最大输入字数
+     * @return 是否合规
+     */
+    private boolean checkIsValid(String username, String password, String rePassword, int usernameCountMax, int passwordCountMax, int rePasswordCountMax) {
+        return isUsernameValid(username, usernameCountMax) && isPasswordValid(password, passwordCountMax) && isRePasswordValid(rePassword, rePasswordCountMax);
     }
 
     /**
