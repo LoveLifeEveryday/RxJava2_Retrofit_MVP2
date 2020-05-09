@@ -1,6 +1,5 @@
 package com.users.xucanyou666.rxjava2_retrofit_mvp2.base;
 
-import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +7,7 @@ import android.view.LayoutInflater;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.yechaoa.yutils.YUtils;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.XUtil;
 
 import butterknife.ButterKnife;
 
@@ -63,12 +62,12 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
 
     @Override
     public void showLoading() {
-        YUtils.showLoading(this, "加载中");
+        XUtil.showLoading(this, "加载中");
     }
 
     @Override
     public void hideLoading() {
-        YUtils.dismissLoading();
+        XUtil.dismissLoading();
     }
 
     /**
@@ -76,20 +75,6 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      */
     @Override
     public void onErrorCode(BaseBean bean) {
-    }
-
-    /**
-     * 启动activity
-     *
-     * @param activity 当前活动
-     * @param isFinish 是否结束当前活动
-     */
-    public void startActivity(Class<?> activity, boolean isFinish) {
-        Intent intent = new Intent(this, activity);
-        startActivity(intent);
-        if (isFinish) {
-            finish();
-        }
     }
 
 

@@ -2,7 +2,7 @@ package com.users.xucanyou666.rxjava2_retrofit_mvp2.http;
 
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.http.cookie.CookiesManager;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.http.gson.BaseConverterFactory;
-import com.yechaoa.yutils.YUtils;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.XUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,6 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 /**
  * Description : RetrofitService
@@ -64,12 +65,13 @@ public class RetrofitService {
                 //设置超时时间
                 .connectTimeout(15, TimeUnit.SECONDS)
                 //设置Cookie持久化
-                .cookieJar(new CookiesManager(YUtils.getApplication()))
+                .cookieJar(new CookiesManager(XUtil.getApplication()))
                 .build();
 
         //关联okHttp并加上rxJava和Gson的配置和baseUrl
         Retrofit retrofit = new Retrofit.Builder()
                 .client(okHttpClient)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(BaseConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .baseUrl(API.BASE_URL)

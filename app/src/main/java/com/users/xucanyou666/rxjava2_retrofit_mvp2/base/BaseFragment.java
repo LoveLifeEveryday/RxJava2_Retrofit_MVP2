@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.yechaoa.yutils.ActivityUtil;
-import com.yechaoa.yutils.YUtils;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.ActivityUtil;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.XUtil;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -80,7 +80,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
      */
     @Override
     public void showLoading() {
-        YUtils.showLoading(ActivityUtil.getCurrentActivity(), "加载中");
+        XUtil.showLoading(ActivityUtil.getCurrentActivity(), "加载中");
     }
 
     /**
@@ -88,6 +88,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
      */
     @Override
     public void hideLoading() {
-        YUtils.dismissLoading();
+        XUtil.dismissLoading();
     }
 }

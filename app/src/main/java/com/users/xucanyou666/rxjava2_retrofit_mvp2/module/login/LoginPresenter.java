@@ -7,8 +7,8 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseObserver;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BasePresenter;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.bean.User;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.common.GlobalConstant;
-import com.yechaoa.yutils.SpUtil;
-import com.yechaoa.yutils.YUtils;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.SpUtil;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.XUtil;
 
 /**
  * Description : LoginPresenter
@@ -34,12 +34,13 @@ class LoginPresenter extends BasePresenter<ILoginView> {
      * @param passwordCountMax 密码规定输入字符最大值
      */
     void login(String username, String password, int usernameCountMax, int passwordCountMax) {
-        YUtils.closeSoftKeyboard();
+        XUtil.closeSoftKeyboard();
         //判断输入的账号密码是否符合规范
         if (isValid(username, password, usernameCountMax, passwordCountMax)) {
             addDisposable(apiServer.login(username, password), new BaseObserver<BaseBean<User>>(baseView, true) {
                 @Override
                 public void onSuccess(BaseBean<User> bean) {
+
                     baseView.showLoginSuccess("登录成功（￣▽￣）");
                     //将登陆的账号存进sp里面
                     SpUtil.setBoolean(GlobalConstant.IS_LOGIN, true);

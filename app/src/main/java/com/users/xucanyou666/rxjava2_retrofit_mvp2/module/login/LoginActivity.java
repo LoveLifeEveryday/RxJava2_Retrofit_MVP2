@@ -9,8 +9,9 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.R;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseActivity;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.module.home.MainActivity;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.module.register.RegisterActivity;
-import com.yechaoa.yutils.ToastUtil;
-import com.yechaoa.yutils.YUtils;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.ActivityUtil;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.ToastUtil;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.XUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -74,7 +75,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
 
     @Override
     public void doSuccess() {
-        startActivity(MainActivity.class, true);
+        ActivityUtil.startActivity(MainActivity.class, true);
     }
 
 
@@ -89,8 +90,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements ILogi
                 presenter.login(username, password, tilUsernameCounterMaxLength, tilPasswordCounterMaxLength);
                 break;
             case R.id.btn_register:
-                YUtils.closeSoftKeyboard();
-                startActivity(RegisterActivity.class, false);
+                XUtil.closeSoftKeyboard();
+                ActivityUtil.startActivity(RegisterActivity.class);
                 break;
             default:
                 break;

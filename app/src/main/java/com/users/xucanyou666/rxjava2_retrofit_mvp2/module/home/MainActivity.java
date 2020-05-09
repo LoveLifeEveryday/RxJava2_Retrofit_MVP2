@@ -1,9 +1,7 @@
 package com.users.xucanyou666.rxjava2_retrofit_mvp2.module.home;
 
-import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,15 +10,13 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.R;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.adapter.ArticleAdapter;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseActivity;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseBean;
-import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseView;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.bean.Article;
-import com.yechaoa.yutils.ToastUtil;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.ToastUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Description : MainActivity 主页活动

@@ -6,7 +6,7 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseBean;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseObserver;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BasePresenter;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.bean.User;
-import com.yechaoa.yutils.YUtils;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.XUtil;
 
 /**
  * Description : RegisterPresenter
@@ -23,7 +23,7 @@ class RegisterPresenter extends BasePresenter<IRegisterView> {
     }
 
     void register(String username, String password, String rePassword, int usernameCountMax, int passwordCountMax, int rePasswordCountMax) {
-        YUtils.closeSoftKeyboard();
+        XUtil.closeSoftKeyboard();
         //判断输入是否合规
         if (checkIsValid(username, password, rePassword, usernameCountMax, passwordCountMax, rePasswordCountMax)) {
             //判断两次密码输入是否一致

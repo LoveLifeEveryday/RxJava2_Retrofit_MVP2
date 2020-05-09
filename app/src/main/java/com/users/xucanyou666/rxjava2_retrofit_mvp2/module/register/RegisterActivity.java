@@ -9,7 +9,7 @@ import com.users.xucanyou666.rxjava2_retrofit_mvp2.R;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseActivity;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseBean;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.bean.User;
-import com.yechaoa.yutils.ToastUtil;
+import com.users.xucanyou666.rxjava2_retrofit_mvp2.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.OnClick;

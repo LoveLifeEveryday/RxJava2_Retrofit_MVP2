@@ -27,4 +27,5 @@ public class BaseBean<T> implements Serializable {
         this.errorCode = code;
         this.data = (T) data;
     }
+
 }

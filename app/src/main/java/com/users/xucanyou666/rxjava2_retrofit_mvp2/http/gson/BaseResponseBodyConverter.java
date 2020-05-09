@@ -1,6 +1,5 @@
 package com.users.xucanyou666.rxjava2_retrofit_mvp2.http.gson;
 
-import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.users.xucanyou666.rxjava2_retrofit_mvp2.base.BaseException;
 
@@ -13,7 +12,8 @@ import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
 /**
- * Created by yechao on 2019/11/18/018.
+ * @author yechao
+ * @date 2019/11/18/018
  * Describe : 重写ResponseBodyConverter对json预处理
  */
 public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> {
@@ -24,7 +24,7 @@ public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> 
      */
     private static final int LOG_OUT_TIME = -1001;
 
-    BaseResponseBodyConverter( TypeAdapter<T> adapter) {
+    BaseResponseBodyConverter(TypeAdapter<T> adapter) {
         this.adapter = adapter;
     }
 

@@ -44,6 +44,7 @@ public class BaseException extends IOException {
         return errorCode;
     }
 
+
     public BaseException(String message) {
         this.errorMsg = message;
     }
