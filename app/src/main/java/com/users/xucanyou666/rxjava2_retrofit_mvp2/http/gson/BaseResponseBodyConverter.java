@@ -39,6 +39,7 @@ public class BaseResponseBodyConverter<T> implements Converter<ResponseBody, T> 
                 //错误信息
                 if (code == LOG_OUT_TIME) {
                     data = "登录失效，请重新登录";
+
                 } else {
                     data = object.getString("errorMsg");
                 }

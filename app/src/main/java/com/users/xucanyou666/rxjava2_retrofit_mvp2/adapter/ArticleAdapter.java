@@ -51,7 +51,6 @@ public class ArticleAdapter extends BaseQuickAdapter<Article.DataDetailBean, Bas
 
         if (item.collect) {
             Glide.with(mContext).load(R.drawable.ic_like_checked).into((ImageView) helper.getView(R.id.article_favorite));
-
         } else {
             Glide.with(mContext).load(R.drawable.ic_like_normal).into((ImageView) helper.getView(R.id.article_favorite));
         }

@@ -42,6 +42,7 @@ public class XUtil {
     public static void dismissLoading() {
         if (progressDialog != null && progressDialog.isShowing()) {
             progressDialog.dismiss();
+            progressDialog = null;
         }
     }
 

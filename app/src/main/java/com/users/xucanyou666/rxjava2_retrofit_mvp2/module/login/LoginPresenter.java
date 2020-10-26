@@ -40,7 +40,6 @@ class LoginPresenter extends BasePresenter<ILoginView> {
             addDisposable(apiServer.login(username, password), new BaseObserver<BaseBean<User>>(baseView, true) {
                 @Override
                 public void onSuccess(BaseBean<User> bean) {
-
                     baseView.showLoginSuccess("登录成功（￣▽￣）");
                     //将登陆的账号存进sp里面
                     SpUtil.setBoolean(GlobalConstant.IS_LOGIN, true);

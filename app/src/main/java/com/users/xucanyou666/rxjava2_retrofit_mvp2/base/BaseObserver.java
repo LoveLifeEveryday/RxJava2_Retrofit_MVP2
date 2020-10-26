@@ -83,7 +83,7 @@ public abstract class BaseObserver<T> extends DisposableObserver<T> {
                     be = new BaseException(BaseException.CONNECT_TIMEOUT_MSG, e);
                 } else if (e instanceof JsonParseException || e instanceof JSONException || e instanceof ParseException) {
                     //解析错误
-                    be = new BaseException(BaseException.PARSE_ERROR_MSG, e);
+                    be = new BaseException( BaseException.PARSE_ERROR_MSG, e);
                 } else {
                     be = new BaseException(BaseException.OTHER_MSG, e);
                 }

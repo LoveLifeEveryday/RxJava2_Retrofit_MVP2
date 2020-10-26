@@ -23,9 +23,9 @@ public class BaseBean<T> implements Serializable {
     public String errorMsg;
     public T data;
 
-    public BaseBean(int code, String data) {
+    public BaseBean(int code, T data) {
         this.errorCode = code;
-        this.data = (T) data;
+        this.data = data;
     }
 
 }
